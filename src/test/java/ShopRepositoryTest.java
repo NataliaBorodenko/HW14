@@ -32,28 +32,30 @@ public class ShopRepositoryTest {
 
         });
     }
-@Test
-        public void testSuccessfullAdded() {
-            Product product4 = new Product(4, "Продукт 4", 400);
-            shop.add(product1);
-            shop.add(product2);
-            shop.add(product3);
-            shop.add(product4);
-            Product[] expected = {product1,product2,product3,product4};
-            Assertions.assertArrayEquals(expected, shop.findAll());
-        }
-        @Test
-        public void testAlreadyExistsException() {
+
+    @Test
+    public void testSuccessfullAdded() {
+        Product product4 = new Product(4, "Продукт 4", 400);
         shop.add(product1);
         shop.add(product2);
         shop.add(product3);
-        Assertions.assertThrows(AlreadyExistsException.class, () ->{
+        shop.add(product4);
+        Product[] expected = {product1, product2, product3, product4};
+        Assertions.assertArrayEquals(expected, shop.findAll());
+    }
+
+    @Test
+    public void testAlreadyExistsException() {
+        shop.add(product1);
+        shop.add(product2);
+        shop.add(product3);
+        Assertions.assertThrows(AlreadyExistsException.class, () -> {
             shop.add(product3);
         });
 
-        }
-
     }
+
+}
 
 
 
